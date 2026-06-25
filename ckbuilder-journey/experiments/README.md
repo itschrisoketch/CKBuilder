@@ -10,4 +10,4 @@ Each experiment is self-contained under `week-NN/<experiment-name>/` and carries
 
 | Week | Experiment | Description |
 | --- | --- | --- |
-| _Week 1_ | _coming soon_ | _CKB balance viewer + transfer dApp (CCC, devnet)_ |
+| Week 1 | [ckb-balance-transfer](./week-01/ckb-balance-transfer/) | CKB Devnet Wallet Lab — view any address' balance and transfer CKB on the devnet, with a live transaction-lifecycle view (React + CCC) |

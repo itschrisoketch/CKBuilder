@@ -1,0 +1,338 @@
+:root {
+  --bg: #0c0f14;
+  --panel: #141922;
+  --panel-2: #1b212c;
+  --line: #273140;
+  --text: #e8edf4;
+  --muted: #8a97a8;
+  --accent: #22d3a5;
+  --accent-dim: #15806a;
+  --danger: #ff6b6b;
+  --warn: #f6c343;
+  --radius: 14px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(900px 500px at 12% -8%, #14352c 0%, transparent 55%),
+    radial-gradient(800px 460px at 110% 0%, #16263b 0%, transparent 50%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+/* Masthead -------------------------------------------------------------- */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.tagline {
+  margin: 8px 0 0;
+  color: var(--muted);
+  max-width: 46ch;
+  line-height: 1.5;
+}
+
+.chain-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.dot.ok {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(34, 211, 165, 0.15);
+}
+
+.dot.down {
+  background: var(--danger);
+  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.15);
+}
+
+.chain-text {
+  color: var(--text);
+}
+
+.rpc {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Grid + cards ---------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-head h2 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.card-head p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* Form fields ----------------------------------------------------------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.field textarea,
+.field input,
+.field select {
+  background: #0e131a;
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.field textarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.field textarea:focus,
+.field input:focus,
+.field select:focus {
+  border-color: var(--accent-dim);
+}
+
+/* Buttons --------------------------------------------------------------- */
+.account-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: #0e131a;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.chip:hover {
+  border-color: var(--accent-dim);
+  color: var(--text);
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.05s ease,
+    opacity 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #042019;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Balance readout ------------------------------------------------------- */
+.balance-readout {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  background: #0e131a;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.balance-readout .amount {
+  font-size: 30px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  word-break: break-all;
+}
+
+.balance-readout .unit {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Transfer stages ------------------------------------------------------- */
+.stages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 2px solid var(--line);
+}
+
+.stages li {
+  position: relative;
+  padding: 10px 0 10px 18px;
+}
+
+.stages li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.stage-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.stage-step {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.stage-hash {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stage-detail {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+/* Tx status ------------------------------------------------------------- */
+.tx-status {
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1px solid var(--line);
+  background: #0e131a;
+  text-transform: capitalize;
+}
+
+.tx-status.committed {
+  border-color: var(--accent-dim);
+  color: var(--accent);
+}
+
+.tx-status.pending,
+.tx-status.proposed,
+.tx-status.sent {
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.tx-status.rejected {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 13px;
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.25);
+  border-radius: 10px;
+  padding: 10px 12px;
+  word-break: break-word;
+}
+
+/* Footer ---------------------------------------------------------------- */
+.footer {
+  margin-top: 36px;
+  color: var(--muted);
+  font-size: 12.5px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.footer a {
+  color: var(--accent);
+}

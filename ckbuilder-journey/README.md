@@ -27,4 +27,4 @@ See the repo-root [`CLAUDE.md`](../CLAUDE.md) for working conventions.
 
 | Week | Report |
 | --- | --- |
-| _Week 1_ | _coming soon_ |
+| Week 1 | [week-01.md](./reports/week-01.md) |
