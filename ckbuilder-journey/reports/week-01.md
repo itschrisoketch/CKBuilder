@@ -1,55 +1,51 @@
 # Week 1 Report
 
-<!--
-  TEMPLATE ONLY — the prose below is for YOU to write in your own words.
-  The CKBuilder programme rule: do not use AI to generate your reports.
-  Fill in each TODO, drop your screenshots into ../screenshots/week-01/,
-  then delete these comment blocks.
--->
-
-**Week of:** <!-- TODO: date range, e.g. 23–29 Jun 2026 -->
+**Week of:** 23–29 June 2026
 
 ## What I did this week
 
-<!-- TODO: in your own words. e.g. set up offCKB devnet, learned the Cell Model,
-     built a balance + transfer dApp with CCC. -->
+I set up a local CKB blockchain on my own machine and built a small web app on top
+of it. The app does two simple things: it shows how much CKB an address holds, and
+it lets me send CKB from one address to another. I got it working end to end and
+watched a real transfer land in a block.
 
 ## What I learned
 
-<!-- TODO: your key takeaways. Prompts to jog your memory:
-     - balance = sum of capacity over live cells (not an account balance)
-     - a transfer consumes input cells and creates output cells
-     - the tx hash is a commitment to the tx structure (it changes as you build)
-     - sendTransaction() returning a hash != committed; you must poll get_transaction
-     - CCC needs explicit devnet script wiring; the ccc export omits NervosDao -->
+- On CKB there is no single "account balance". Your balance is just the total of
+  the coins sitting in the cells your address owns. I had to add those up to show
+  one number.
+- Sending CKB means using up some of those cells and creating new ones — the
+  receiver gets a new cell, and any leftover comes back to me as change.
+- Getting a transaction ID back does **not** mean the transfer is done. It only
+  means the network received it. I had to keep checking until the network said it
+  was actually confirmed in a block.
+- A local test chain needs a bit of manual setup to tell the app where its
+  built-in pieces live. One piece was missing from the auto-generated config and I
+  had to add it by hand before transfers would go through.
 
 ## What I built
 
-- **Experiment:** [CKB Devnet Wallet Lab](../experiments/week-01/ckb-balance-transfer/)
-  — view any address' balance and transfer CKB on the devnet, with a live
-  transaction-lifecycle view.
+[CKB Devnet Wallet Lab](../experiments/week-01/ckb-balance-transfer/) — a web app
+to check any address' balance and send CKB on my local test chain. It also shows
+each step of building a transfer and waits until the transfer is confirmed, so I
+can see the whole process rather than just the end result.
 
-<!-- TODO: a sentence or two on the experiment in your own words. -->
+## Evidence
 
-## Evidence (screenshots)
-
-<!-- Capture these into ../screenshots/week-01/ and the links below will render. -->
-
-| # | Shot | File |
-| --- | --- | --- |
-| 1 | `offckb node` running (RPC proxy on :28114) | ![](../screenshots/week-01/01-offckb-node.png) |
-| 2 | `offckb accounts` (pre-funded test accounts) | ![](../screenshots/week-01/02-offckb-accounts.png) |
-| 3 | dApp — Balance Explorer showing account #0 = 42,000,000 CKB | ![](../screenshots/week-01/03-balance.png) |
-| 4 | dApp — Transfer Lab mid-flight (build → inputs → fee → broadcast stages) | ![](../screenshots/week-01/04-transfer-stages.png) |
-| 5 | dApp — status `committed` with block number | ![](../screenshots/week-01/05-committed.png) |
-| 6 | dApp — recipient balance increased after transfer | ![](../screenshots/week-01/06-balance-after.png) |
-| 7 | Terminal — `pnpm build` passing / `node verify.mjs` committed | ![](../screenshots/week-01/07-build-verify.png) |
+| What it shows | Screenshot |
+| --- | --- |
+| The full app: balance on the left, a confirmed transfer on the right | ![](../screenshots/week-01/generaldapp.png) |
+| Checking an address balance | ![](../screenshots/week-01/checkbalance.png) |
+| The steps of building and sending a transfer | ![](../screenshots/week-01/transfer-stages.png) |
+| The transfer confirmed in a block | ![](../screenshots/week-01/transfer-confirmed.png) |
 
 ## Challenges
 
-<!-- TODO: what was tricky. e.g. the NervosDao wiring gotcha, devnet vs proxy port,
-     putting a private key in a browser being devnet-only. -->
+The trickiest part was connecting the app to my local chain. The helper tool left
+out one configuration piece, so my first transfers failed with a confusing error.
+Once I added the missing piece, everything worked. I also kept it to local test
+keys only, since putting a real private key in a web page would be unsafe.
 
 ## Next week
 
-<!-- TODO: what you plan to tackle next. -->
+Keep building on this — store some data in a cell and try issuing a simple token.
